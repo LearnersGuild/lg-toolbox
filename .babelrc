@@ -1,0 +1,24 @@
+{
+  "presets": ["es2015", "stage-2"],
+  "plugins": [
+    ["transform-builtin-extend", {"globals": ["Error"]}],
+    ["transform-object-rest-spread"]
+  ],
+  "env": {
+    "test": {
+      "sourceMap": "inline"
+    },
+    "development": {
+      "ignore": [
+        "test",
+        "__test__"
+      ]
+    },
+    "production": {
+      "ignore": [
+        "test",
+        "__test__"
+      ]
+    }
+  }
+}

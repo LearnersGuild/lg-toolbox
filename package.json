@@ -2,23 +2,53 @@
   "name": "lg-toolbox",
   "version": "1.0.0",
   "description": "Shared Learners Guild utilities",
+  "lib": "main",
   "engines": {
     "node": "6.11.x",
     "npm": "3.7.x"
   },
   "scripts": {
-    "test": "./node_modules/.bin/eslint src/**/*.js"
+    "build": "NODE_ENV=production npm run clean && ./node_modules/.bin/babel -d lib/ src/",
+    "clean": "./node_modules/.bin/rimraf ./lib/*",
+    "prepublish": "npm run build && npm test",
+    "test:run": "NODE_ENV=test ./node_modules/.bin/mocha --opts ./src/test/mocha.opts $(find . -path './**/__tests__/*.test.js' ! -ipath '*node_modules*')",
+    "test:lint": "./node_modules/.bin/eslint .",
+    "test": "npm run build && npm run test:lint && npm run test:run"
   },
   "authors": [
     {
       "name": "Learners Guild",
       "email": "sj@learnersguild.org"
+    },
+    {
+      "name": "Abraham Ferguson",
+      "email": "jhnfgie1989@gmail.com"
+    },
+    {
+      "name": "Jose Chavez",
+      "email": "jbchavez19@gmail.com"
     }
   ],
   "license": "MIT",
   "devDependencies": {
+    "chai": "^4.1.1",
+    "chai-as-promised": "^7.1.1",
     "eslint": "^4.4.1",
     "eslint-config-airbnb-base": "^11.3.1",
-    "eslint-plugin-import": "^2.7.0"
+    "eslint-plugin-import-use": "file:eslint-plugin-import-use",
+    "jsdom": "^8.0.4",
+    "mocha": "^3.5.0",
+    "sinon-chai": "^2.13.0"
+  },
+  "dependencies": {
+    "auto-loader": "^0.2.0",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "rethinkdb": "^2.3.3",
+    "rethinkdbdash": "^2.3.31",
+    "thinky": "^2.3.8"
   }
 }
