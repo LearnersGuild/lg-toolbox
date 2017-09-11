@@ -1,1 +1,3 @@
-export {default} from './services'
+const dataService = require('./services/dataService')
+
+module.exports = dataService

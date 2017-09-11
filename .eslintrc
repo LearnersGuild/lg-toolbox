@@ -1,13 +1,27 @@
 {
+  "ecmaFeatures": {
+    "modules": false
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
   "extends": "airbnb-base",
+  "globals": {
+    "expect": true
+  },
+  "parserOptions": {
+    "sourceyType": "script"
+  },
+  "plugins": ["import-use"],
   "rules": {
     "semi": ["error", "never"],
     "object-curly-spacing": ["error", "never"],
     "no-use-before-define": ["error", {"functions": false, "classes": true}],
-    "no-underscore-dangle": 0
-  },
-  "env": {
-    "browser": true,
-    "node": true
+    "no-param-reassign": [2, {"props": false}],
+    "no-underscore-dangle": 0,
+    "import-use/flag-import": 2,
+    "object-shorthand": ["error", "properties"]
   }
 }
